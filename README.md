@@ -1,4 +1,5 @@
-<include a CircleCI status badge, here>
+
+[![adamako](https://circleci.com/gh/adamako/project-ml-microservice-kubernetes.svg?style=svg)](https://github.com/adamako/project-ml-microservice-kubernetes/)
 
 ## Project Overview
 
