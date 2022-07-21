@@ -1,2 +1,2 @@
-# project-ml-microservice-kubernetes-
+# project-ml-microservice-kubernetes
 Udacity Cloud DevOps Project 4
