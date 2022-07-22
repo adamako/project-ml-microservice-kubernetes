@@ -7,9 +7,9 @@ WORKDIR /app
 COPY . app.py /app/
 
 ## Step 3:
-#hadolint ignore=DL3013 \
-RUN pip install  --upgrade pip && \
-    pip install --trusted-host pypi.python.org -r requirements.txt
+#hadolint ignore=DL3013
+RUN pip install --no-cache-dir  --upgrade pip && \
+    pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
 ## Step 4:
 
