@@ -1,15 +1,35 @@
 version: 2.1
 
 jobs:
-  build-and-test:
+  build:
     docker:
-      - image: cimg/python:3.10.2
+      - image: python:3.7.3-stretch
     steps:
       - checkout
+      - restore_cache:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-
       - run:
-          name: Hello
-          command: echo hello
+          name: Install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            make install
+
+            echo "---- Install hadolint ----"
+            wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
+            chmod +x /bin/hadolint
+      - save_cache:
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          paths:
+            - ./venv
+      - run:
+          name: run lint
+          command: |
+            . venv/bin/activate
+            make lint
+
 workflows:
   default:
     jobs:
-      - build-and-test
+      - build
